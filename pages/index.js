@@ -2,14 +2,16 @@ import { useState } from 'react';
 import emailjs from 'emailjs-com';
 
 export default function IndexPage() {
-	const [message, setMessage] = useState(false);
-	const [button, setButton]   = useState(false);
+	const [message, setMessage] = useState(false); // set kondisi untuk pesan
+	const [button, setButton]   = useState(false); // set kondisi untuk tombol 
 
+	// Fungsi saat form di submit
 	function sendEmail(e) {
 		e.preventDefault();
 	
-		emailjs.sendForm('service_yjinppd', 'template_l4ujeov', e.target, 'user_E66biG7WPa3qmfgo1VWVN')
+		emailjs.sendForm('service_name', 'template_name', e.target, 'user_id')
 			.then((result) => {
+				// Pesan yang muncul saat sukses
 				setMessage(<div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-indigo-500">
 					<span className="inline-block align-middle mr-8">
 				  		Your message has been sent!	
@@ -17,6 +19,7 @@ export default function IndexPage() {
 			  	</div>)
                 setButton("SEND MESSAGE")
 			}, (error) => {
+				// Pesan yang muncul saat error
 				setMessage(<div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-indigo-500">
 					<span className="inline-block align-middle mr-8">{error.text}</span>
 			  	</div>)
